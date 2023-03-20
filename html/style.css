@@ -114,3 +114,15 @@ cursor: pointer;
 .login_signup{
   text-align: center;
 }
+
+li{
+    margin-left: 10px;
+    
+}
+.Edit_icon{
+    margin-left: 20px;
+}
+.memorie_group{
+    float: right;
+    height:30px
+}
