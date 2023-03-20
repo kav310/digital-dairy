@@ -69,6 +69,19 @@ margin: 10px 5px;
 cursor: pointer;
 float: right;
 }
+.login_trybutton{
+background-color:pink;
+border: none;
+color: black;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+/*display: inline-block;*/
+font-size: 16px;
+margin: 10px 5px;
+cursor: pointer;
+float: right;
+}
 .trydivbutton
 {
 text-align: center;
@@ -84,4 +97,20 @@ text-decoration: none;
 font-size: 16px;
 margin: 10px 5px;
 cursor: pointer;    
+}
+.login_input{
+  border-width: 1px;
+  border-color: black;
+  margin-left: 30px;
+}
+.login_lbl{
+  font-family: "Times New Roman"  , "sans-serif";
+  align-content: center;
+}
+.signup_lbl{
+  font-family: "Times New Roman"  , "sans-serif";
+  align-content: center;
+}
+.login_signup{
+  text-align: center;
 }
