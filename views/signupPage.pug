@@ -1,0 +1,36 @@
+html
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0")
+    title Node.js with TailwindCSS, Express and Pug
+    link(href="/dist/output.css", rel="stylesheet")
+  body
+    a(href="#" class="login_trybutton") Try My dairy,its free
+    img(class="book_icon",src="/assets/book.svg", alt="")
+    h3 My Dairy
+    <br><br>
+    <br>
+    form(action="mainPage.html" method="post" align="center")
+          label(class="signup_lbl" for="fullname") Full Name
+          input(class="login_input" type="text" name="Fullname" placeholder="Your user name...")  
+          br
+          br
+          label(class="signup_lbl" for="DOB") DOB
+          input(class="login_input" type="date" name="date")
+          br
+          br
+          label(class="signup_lbl" for="email") Email
+          input(class="login_input" type="text" name="Email" placeholder="Your Email here...")
+          br
+          br
+          label(class="signup_lbl" for="password") Password
+          input(class="login_input" type="password" name="password" placeholder="Your password...")
+          br
+          br
+          //- input(class="trybutton" type="submit" name="signup" value="SIGNUP")
+          a(href="mainPage.html" class="trybutton") SIGNUP
+          br
+          br
+    h3(class="login_signup") Already have an Account? 
+       a(href="loginPage.html") LOGIN       
