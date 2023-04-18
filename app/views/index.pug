@@ -1,24 +1,23 @@
 doctype html
 html
-  head
-    meta(charset="utf-8")
-    meta(http-equiv="X-UA-Compatible", content="IE=edge")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0")
+  head    
     title #{title}
-    link(href="/dist/output.css", rel="stylesheet")
+    script(language="javascript" src="/bootstrap/js/bootstrap.min.js")
+    link(rel="stylesheet" href="/bootstrap/css/bootstrap.min.css")
+    link(rel="stylesheet" href="/css/style.css")
   body
-    a(href="loginPage.html" class="lgbutton") LOGIN 
-    a(href="signupPage.html" class="spbutton") SIGN UP
-    img(class="book_icon",src="/assets/book.svg", alt="")
-    h3 My Dairy
-    <br><br>
-    <br>
-    <br>
-    <br>
-    <br>
-    img(class="women_img",src="/assets/Traveller woman with map and suitcase.svg", alt="",length='200px',width='500px')  
-    h1 Yourdaily journey is coming <br> to digital paper now.
-    h2 write whatever you lived and whatever you thought.
-    <br><br>
-    div(class="trydivbutton")
-      a(href="#" class="trybutton") Try My dairy, its free
+    nav.navbar.bg-body-tertiary
+      .container-fluid
+        img(class="book_icon",src="/assets/book.png", alt="")
+        .d-flex
+          a(href="/login" class="lgbutton") LOGIN 
+          a(href="/signUp" class="spbutton") SIGN UP
+    .container.text-center
+      .row.align-items-center
+        .col
+          img(class="women_img",src="assets/Traveller woman with map and suitcase.svg", alt="")  
+        .col
+          div(class="main_heading") Your daily journey is coming to digital paper now.
+          div(class="second_heading") write whatever you lived and whatever you thought.
+          div
+            a(href="/signUp" class="trybutton") Try My dairy, its free

@@ -1,29 +1,25 @@
 doctype html
 html
   head
-    meta(charset="utf-8")
-    meta(http-equiv="X-UA-Compatible", content="IE=edge")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0")
-    title Node.js with TailwindCSS, Express and Pug
-    link(href="/dist/output.css", rel="stylesheet")
+    title #{title}
+    script(language="javascript" src="/bootstrap/js/bootstrap.min.js")
+    link(rel="stylesheet" href="/bootstrap/css/bootstrap.min.css")
+    link(rel="stylesheet" href="/css/style.css")
   body
-    a(href="#" class="login_trybutton") Try My dairy,its free
-    img(class="book_icon",src="/assets/book.svg", alt="")
-    h3 My Dairy
-    <br><br>
-    <br>
-    form(action="/memories.html" method="post" align="center")
-          label(class="login_lbl" for="username") Username
-          input(class="login_input" type="text" name="username" placeholder="Your user name...")  
-          br
-          br
-          label(class="login_lbl" for="password") Password
-          input(class="login_input" type="password" name="password" placeholder="Your password...")
-          br
-          br
-          //- input(class="trybutton" type="submit" name="login" value="LOGIN")
-          a(href="mainPage.html" class="trybutton") LOGIN
-          br
-          br
-    h3(class="login_signup") Dont have an Account? 
-       a(href="singupPage.html") SIGNUP       
+    nav.navbar.bg-body-tertiary
+      .container-fluid
+        img(class="book_icon",src="/assets/book.png", alt="")
+    .d-flex.align-items-center.justify-content-center
+      div
+        form
+        .row.mb-3
+          label.col-sm-3.col-form-label(for='inputEmail3') Email
+          .col-sm-8
+            input#inputEmail3.form-control(type='email')
+        .row.mb-3
+          label.col-sm-3.col-form-label(for='inputPassword3') Password
+          .col-sm-8
+            input#inputPassword3.form-control(type='password')
+        button(class="cred_button" type='submit') LOG IN
+        .login_signup Dont have an Account? 
+          a(href="/singUp") SIGNUP       
