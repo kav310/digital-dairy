@@ -6,25 +6,29 @@ html
       link(rel="stylesheet" href="/bootstrap/css/bootstrap.min.css")
       link(rel="stylesheet" href="/css/style.css")
     body
-       img(class="book_icon",src="/assets/book.png", alt="")
-       <br>
-       <br>
-       <br>
-       <br>
-       <br>
-       <br>
-       img(class='man_img',src="/assets/A man studies a tourist route.svg", alt="")
-       div(class="mainpagenote")  
-            h1 My Notes<br>
-            h2 As soon as the dream fades away,<br>it disappears among<br> the stars,write without losing.
-       
-       <br><br><br><br><br><br><br><br><br><br><br>
-       a(href='editMemory.html')
-          img(class='plus_img',src="/assets/plus.svg", alt="")
-       div(class='my_memories')     
+      nav.navbar.bg-body-tertiary
+         .container-fluid
+            img(class="book_icon",src="/assets/book.png", alt="")
+      br
+      .container.text-center
+      .row.align-items-center
+        .col
+          img(class='man_img',src="/assets/A man studies a tourist route.svg", alt="") 
+        .col
+             div(class="mainpagenote")  
+               h1 My Notes<br>
+               h2 As soon as the dream fades away,<br>it disappears among<br> the stars,write without losing.
+      br
+      br
+      .col
+         a(href='/editMemory')
+            img(class='plus_img',src="/assets/plus.svg", alt="")
+      .col
+         div(class='my_memories')     
             h1 My Memories
-       <br><br><br><br>
-       img(class='radiobut_img',src="/assets/Group 1544.svg", alt="")
-       p now lets loop 
-       each item in data  
-          p #{item}
+      br
+      br
+      img(class='radiobut_img',src="/assets/Group 1544.svg", alt="")
+      a(href="/memoryList")
+         p(class="date_display") 24-04-2023 
+      

@@ -33,6 +33,19 @@ app.get("/login", function(req, res) {
 app.get("/signUp", function(req, res) {
     res.render("signupPage")
 })
+app.get("/memories", function(req, res) {
+    res.render("memories")
+})
+app.get("/editMemory", function(req, res) {
+    res.render("editMemory")
+})
+app.get("/memoryList", function(req, res) {
+    res.render("listMemory")
+})
+app.get("/mainPage", function(req, res) {
+    res.render("mainPage")
+})
+
 
 
 // Start server on port 3000
