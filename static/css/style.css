@@ -16,7 +16,21 @@
   font-size: 16px;
   cursor: pointer;
 }
-
+.footer_background{
+  padding: 50px 30px;
+  background-color: pink;
+}
+.footer{
+  position:fixed;
+  left: 0;
+  bottom: 0;
+  width: 4%;
+  flex: right;
+  color: white;
+  text-align: center;
+  margin-bottom: 4%;
+  margin-left:90%;
+}
 .lgbutton {
   background-color: lightgray;
   border: none;
