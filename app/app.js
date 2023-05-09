@@ -47,6 +47,16 @@ app.get("/mainPage", function (req, res) {
   res.render("mainPage");
 });
 
+
+let session = require('express-session');
+app.use(session({
+  secret: 'secretkeysdfjsflyoifasd',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
+
+
 app.post("/register", async function (req, res) {
   console.log(req);
   params = req.body;
@@ -67,26 +77,31 @@ app.post("/register", async function (req, res) {
   }
 });
 
-app.post("/authenticate", async function (req, res) {
-  params = req.body;
-  let user = new User(params.email);
-  try {
-    uId = await user.getIdFromEmail();
-    if (uId) {
-      match = await user.authenticate(params.password);
-      if (match) {
-        res.redirect("/single-student/" + uId);
-      } else {
-        // TODO improve the user journey here
-        res.send("invalid password");
-      }
-    } else {
-      res.send("invalid email");
+app.post('/authenticate', async function (req, res) {
+    params = req.body;
+    let user = new User(params.email);
+    try {
+        uId = await user.getIdFromEmail();
+        if (uId) {
+            match = await user.authenticate(params.password);
+            if (match) {
+                req.session.uid = uId;
+                req.session.loggedIn = true;
+                res.redirect('/single-student/' + uId);
+            }
+            else {
+                // TODO improve the user journey here
+                res.send('invalid password');
+            }
+        }
+        else {
+            res.send('invalid email');
+        }
+    } catch (err) {
+        console.error(`Error while comparing `, err.message);
     }
-  } catch (err) {
-    console.error(`Error while comparing `, err.message);
-  }
 });
+
 
 // Start server on port 3000
 app.listen(3000, function () {
