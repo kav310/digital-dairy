@@ -5,35 +5,29 @@ html
     link(rel="stylesheet" href="/bootstrap/css/bootstrap.min.css")
     link(rel="stylesheet" href="/css/style.css")
   body
-    form
-      a(href="#" class="login_trybutton") Try My dairy,its free
-      nav.navbar.bg-body-tertiary
-      .container-fluid
-        img(class="book_icon",src="/assets/book.png", alt="")
+    a(href="#" class="login_trybutton") Try My dairy,its free
+    nav.navbar.bg-body-tertiary
+    .container-fluid
+      img(class="book_icon",src="/assets/book.png", alt="")
     .d-flex.align-items-center.justify-content-center
       div
-        form
-        .row.mb-3
-          h4(for='formpara3') Write whatever you lived and what you thought.
-        .row.mb-3
-          label.col-sm-3.col-form-label(for='inputuser3') Username
-          .col-sm-8
-            input#inputEmail3.form-control(class="input_form" type='email')
-        .row.mb-3
-          label.col-sm-3.col-form-label(for='inputEmail3') Email
-          .col-sm-8
-            input#inputEmail3.form-control(class="input_form" type='email')
-        .row.mb-3
-          label.col-sm-3.col-form-label(for='inputPassword3') Password
-          .col-sm-8
-            input#inputPassword3.form-control(class="input_form" type='password')
-        div 
-          .custom-control.custom-checkbox
-            input(type="checkbox" class="custom-control-input" id="customCheck1") 
-            label.custom-control-label(for="customCheck1") In announcements and campaigns,I want to be notified via email.
-          
-        a(href="/mainPage")
-          button(class="cred_button_signup" type='submit') SIGN UP
+        form(action='/register' method='POST')
+          .row.mb-3
+            h4(for='formpara3') Write whatever you lived and what you thought.
+          //- .row.mb-3
+          //-   label.col-sm-3.col-form-label(for='username') Username
+          //-   .col-sm-8
+          //-     input#username.form-control(class="username" name="username" type='text')
+          .row.mb-3
+            label.col-sm-3.col-form-label(for='email') Email
+            .col-sm-8
+              input.form-control(name="email" type='email')
+          .row.mb-3
+            label.col-sm-3.col-form-label(for='password') Password
+            .col-sm-8
+              input.form-control(name="password" type='password')
+          div
+            input(class="cred_button_signup" type='submit' value="Sign up")
         br
         .login_signup Already a Member? 
           a(href="/signupPage") LOGIN       
