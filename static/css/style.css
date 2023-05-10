@@ -134,6 +134,10 @@
   margin-top: 50px;
 }
 
+.add {
+  margin-top: -50px;
+  margin-left: 1000px;
+}
 
 h1{
     text-align: center;

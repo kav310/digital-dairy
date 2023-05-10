@@ -3,7 +3,7 @@ const express = require("express");
 const session = require("express-session");
 const { User } = require("./models/user");
 const { Memory } = require("./models/memory");
-const {SingleMemory} = require("./models/singleMemory");
+const { SingleMemory } = require("./models/singleMemory");
 
 // Create express app
 let app = express();
@@ -49,8 +49,8 @@ app.get("/signUp", function (req, res) {
 app.get("/memories", function (req, res) {
   res.render("memories");
 });
-app.get("/editMemory", function (req, res) {
-  res.render("editMemory");
+app.get("/addMemory", function (req, res) {
+  res.render("addMemory");
 });
 app.get("/mainPage", function (req, res) {
   res.render("mainPage", { title: "My Title", userId: id });
@@ -75,12 +75,28 @@ app.post("/register", async function (req, res) {
   }
 });
 
+app.post("/addMemories", async function (req, res) {
+  params = req.body;
+  let id = req.session.id;
+  let createdDate = new Date();
+  let sql = `INSERT INTO Memorys(noteId,title,description,date,id)
+            VALUES(?,?,?,?,?)`;
+  let memory = [4, params.title, params.description, createdDate, id];
+  db.query(sql, memory, (err, results, fields) => {
+    if (err) {
+      return console.error(err.message);
+    }
+    // get inserted id
+    console.log("Id" + results.insertId);
+  });
+});
+
 app.get("/single-memory/:id", async function (req, res) {
   let nId = req.params.id;
   let memory = new SingleMemory(nId);
   await memory.getMemory();
-  console.log(memory.memory[0])
-  res.render("memories", {memory: memory.memory[0]});
+  console.log(memory.memory[0]);
+  res.render("memories", { memory: memory.memory[0] });
 });
 
 app.post("/authenticate", async function (req, res) {

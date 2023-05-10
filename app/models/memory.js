@@ -18,12 +18,6 @@ class Memory {
       this.data = results;
     }
   }
-
-  async getMemory() {
-    let sql = "SELECT * from Memorys where noteId = ?";
-    const results = await db.query(sql, [this.noteId]);
-    this.singleMemory = results;
-  }
 }
 
 module.exports = {
