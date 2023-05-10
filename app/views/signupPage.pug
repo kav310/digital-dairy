@@ -14,10 +14,6 @@ html
         form(action='/register' method='POST')
           .row.mb-3
             h4(for='formpara3') Write whatever you lived and what you thought.
-          //- .row.mb-3
-          //-   label.col-sm-3.col-form-label(for='username') Username
-          //-   .col-sm-8
-          //-     input#username.form-control(class="username" name="username" type='text')
           .row.mb-3
             label.col-sm-3.col-form-label(for='email') Email
             .col-sm-8
@@ -28,6 +24,5 @@ html
               input.form-control(name="password" type='password')
           div
             input(class="cred_button_signup" type='submit' value="Sign up")
-        br
         .login_signup Already a Member? 
           a(href="/signupPage") LOGIN       

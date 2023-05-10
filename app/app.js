@@ -1,6 +1,9 @@
 // Import express.js
 const express = require("express");
+const session = require("express-session");
 const { User } = require("./models/user");
+const { Memory } = require("./models/memory");
+const {SingleMemory} = require("./models/singleMemory");
 
 // Create express app
 let app = express();
@@ -19,6 +22,15 @@ app.use(express.urlencoded({ extended: true }));
 
 // Get the functions in the db.js file to use
 const db = require("./services/db");
+
+app.use(
+  session({
+    secret: "beast breaker",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 60000 },
+  })
+);
 
 // Create a route for root - /
 app.get("/", function (req, res) {
@@ -40,33 +52,19 @@ app.get("/memories", function (req, res) {
 app.get("/editMemory", function (req, res) {
   res.render("editMemory");
 });
-app.get("/memoryList", function (req, res) {
-  res.render("listMemory");
-});
 app.get("/mainPage", function (req, res) {
-  res.render("mainPage");
+  res.render("mainPage", { title: "My Title", userId: id });
 });
-
-
-let session = require('express-session');
-app.use(session({
-  secret: 'secretkeysdfjsflyoifasd',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false }
-}));
-
 
 app.post("/register", async function (req, res) {
-  console.log(req);
   params = req.body;
   let user = new User(params.email);
   try {
     uId = await user.getIdFromEmail();
     if (uId) {
-      // If a valid, existing user is found, set the password and redirect to the users single-student page
+      // If a valid, existing user is found, set the password and redirect to the users login page
       await user.setUserPassword(params.password);
-      res.redirect("/mainPage");
+      res.redirect("/login");
     } else {
       // If no existing user is found, add a new one
       newId = await user.addUser(params.email);
@@ -77,31 +75,39 @@ app.post("/register", async function (req, res) {
   }
 });
 
-app.post('/authenticate', async function (req, res) {
-    params = req.body;
-    let user = new User(params.email);
-    try {
-        uId = await user.getIdFromEmail();
-        if (uId) {
-            match = await user.authenticate(params.password);
-            if (match) {
-                req.session.uid = uId;
-                req.session.loggedIn = true;
-                res.redirect('/single-student/' + uId);
-            }
-            else {
-                // TODO improve the user journey here
-                res.send('invalid password');
-            }
-        }
-        else {
-            res.send('invalid email');
-        }
-    } catch (err) {
-        console.error(`Error while comparing `, err.message);
-    }
+app.get("/single-memory/:id", async function (req, res) {
+  let nId = req.params.id;
+  let memory = new SingleMemory(nId);
+  await memory.getMemory();
+  console.log(memory.memory[0])
+  res.render("memories", {memory: memory.memory[0]});
 });
 
+app.post("/authenticate", async function (req, res) {
+  params = req.body;
+  var user = new User(params.email);
+  try {
+    uId = await user.getIdFromEmail();
+    if (uId) {
+      match = await user.authenticate(params.password);
+      if (match) {
+        req.session.uid = uId;
+        req.session.loggedIn = true;
+        let memory = new Memory(uId);
+        await memory.getMemories();
+        console.log(memory.data);
+        res.render("mainPage", { memory: memory.data });
+      } else {
+        // TODO improve the user journey here
+        res.send("invalid password");
+      }
+    } else {
+      res.send("invalid email");
+    }
+  } catch (err) {
+    console.error(`Error while comparing `, err.message);
+  }
+});
 
 // Start server on port 3000
 app.listen(3000, function () {
