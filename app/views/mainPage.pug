@@ -22,7 +22,7 @@ html
               div(class='my_memories')     
                   h1 My Memories 
           .col
-            a(href='/addMemory')
+            a(href='/addMemory/' + uId)
                 img(class='plus_img',src="/assets/plus.svg", alt="")
         for item in memory
           .row 
@@ -31,6 +31,12 @@ html
                 p #{item.title}
             .col 
               p #{item.date}
+            .col
+              a(href='/single-memory-edit/' + item.noteId) 
+                img(class='Edit_icon',src="/assets/Edit.svg", alt="")
+            .col
+              a(href='/delete/' + item.noteId) 
+                img(class='Trash_icon',src="/assets/Trash Can.svg", alt="")
 
 
       
