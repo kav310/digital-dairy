@@ -92,16 +92,13 @@ app.post("/addMemories/:id", async function (req, res) {
   res.render("mainPage", { memory: memory.data, uId: id })
 });
 
-app.post("/delete/:id", async function(req, res) {
+app.get("/delete/:id", async function(req, res) {
   let id= req.params.id;
   let uId = 4;
-  let sql = 'DELETE FROM Memorys WHERE id = ?';
-  db.query(sql, [id], (error, results, fields) => {
-    if (error)
-    return console.error(error.message);
-
-    console.log('Deleted Row(s):', results.affectedRows);
-    res.redirect('/admin/painting');
+  let sql = `DELETE FROM Memorys WHERE noteId = ?`;
+  db.query(sql, deleteData, (err, results, fields) => {
+    if (err) throw err;
+    console.log("1 record deleted");
   });
   let memory = new Memory(id);
   await memory.getMemories();
